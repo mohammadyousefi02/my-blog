@@ -26,7 +26,6 @@ export default function Post({post}) {
 
 export async function getServerSideProps(context) {
     const {id} = context.query
-    console.log(id)
     const result = await fetch(`${server}/api/posts/${id}`)
     const post = await result.json()
     return {
