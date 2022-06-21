@@ -7,10 +7,11 @@ import { useRouter } from 'next/router'
 export default function Post() {
     const router = useRouter()
     const { id } = router.query
+    console.log(router)
     const [post, setPost] = useState({})
     useEffect(() => {
         fetch(`/api/posts/${id}`).then(res => res.json()).then(data => setPost(data))
-    }, [])
+    }, [id])
   return (
     <div className='flex justify-center post-div w-full'>
         <MainLayout>
