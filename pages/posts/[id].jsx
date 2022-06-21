@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react'
 import MainLayout from '../../src/layout/MainLayout'
 import Link from "next/link"
 import { server } from '../../config'
-// import { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
+import useSwr from "swr"
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 
-export default function Post({post}) {
-    // const router = useRouter()
-    // const { id } = router.query
+export default function Post() {
+    const router = useRouter()
+    const { id } = router.query
+    const {data:post,error} = useSwr(`${server}/api/posts/${id}`,fetcher)
     // console.log(router)
     // const [post, setPost] = useState({})
     // useEffect(() => {
@@ -26,14 +30,14 @@ export default function Post({post}) {
   )
 }
 
-export async function getServerSideProps(context) {
-    const {id} = context.query
-    console.log(id)
-    const result = await fetch(`${server}/api/posts/${id}`)
-    const post = await result.json()
-    return {
-        props: {
-            post
-        }
-    }
-}
+// export async function getServerSideProps(context) {
+//     const {id} = context.query
+//     console.log(id)
+//     const result = await fetch(`${server}/api/posts/${id}`)
+//     const post = await result.json()
+//     return {
+//         props: {
+//             post
+//         }
+//     }
+// }
