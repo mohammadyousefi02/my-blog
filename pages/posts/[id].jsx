@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import MainLayout from '../../src/layout/MainLayout'
 import Link from "next/link"
-import { useRouter } from 'next/router'
+import { server } from '../../config'
+// import { useRouter } from 'next/router'
 
 
-export default function Post() {
-    const router = useRouter()
-    const { id } = router.query
-    console.log(router)
-    const [post, setPost] = useState({})
-    useEffect(() => {
-        fetch(`/api/posts/${id}`).then(res => res.json()).then(data => setPost(data))
-    }, [id])
+export default function Post({post}) {
+    // const router = useRouter()
+    // const { id } = router.query
+    // console.log(router)
+    // const [post, setPost] = useState({})
+    // useEffect(() => {
+    //     fetch(`/api/posts/${id}`).then(res => res.json()).then(data => setPost(data))
+    // }, [id])
   return (
     <div className='flex justify-center post-div w-full'>
         <MainLayout>
@@ -25,14 +26,14 @@ export default function Post() {
   )
 }
 
-// export async function getServerSideProps(context) {
-//     const {id} = context.query
-//     console.log(id)
-//     const result = await fetch(`/api/posts/${id}`)
-//     const post = await result.json()
-//     return {
-//         props: {
-//             post
-//         }
-//     }
-// }
+export async function getServerSideProps(context) {
+    const {id} = context.query
+    console.log(id)
+    const result = await fetch(`${server}/api/posts/${id}`)
+    const post = await result.json()
+    return {
+        props: {
+            post
+        }
+    }
+}
