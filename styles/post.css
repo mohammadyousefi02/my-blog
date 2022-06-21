@@ -1,0 +1,30 @@
+.post-div{
+    padding: 0 2rem;
+}
+
+.post-div p {
+    white-space: pre-wrap;
+    font-size: 20px;
+}
+
+.post-div img, .post-div p {
+    margin-bottom: 2rem;
+}
+
+.post-div i {
+    margin: 0px -15%;
+    font-size: 30px;
+}
+
+.post-div i::after{
+    content: "";
+    display: block;
+    margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+    .post-div i {
+        margin: 0px 0;
+        font-size: 20px;
+    }
+}
