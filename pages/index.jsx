@@ -44,7 +44,7 @@ export default function Home({posts}) {
 }
 
 export async function getStaticProps() {
-  const result = await fetch('/api/posts')
+  const result = await fetch('http://localhost:3000/api/posts')
   const posts = await result.json()
   return {
     props: {
