@@ -5,11 +5,11 @@ import { useEffect, useState } from 'react'
 import MainLayout from '../src/layout/MainLayout'
 import styles from '../styles/Home.module.css'
 
-export default function Home({posts}) {
-  // const [posts, setPosts] = useState([])
-  // useEffect(() => {
-  //   fetch('/api/posts').then(res => res.json()).then(data => setPosts(data))
-  // },[])
+export default function Home() {
+  const [posts, setPosts] = useState([])
+  useEffect(() => {
+    fetch('/api/posts').then(res => res.json()).then(data => setPosts(data))
+  },[])
   return (
     <div className={styles.container}>
       <Head>
@@ -43,14 +43,14 @@ export default function Home({posts}) {
   )
 }
 
-export async function getStaticProps() {
-  const result = await fetch('http://localhost:3000/api/posts')
-  const posts = await result.json()
-  return {
-    props: {
-      posts
-    }
-  }
-}
+// export async function getStaticProps() {
+//   const result = await fetch('http://localhost:3000/api/posts')
+//   const posts = await result.json()
+//   return {
+//     props: {
+//       posts
+//     }
+//   }
+// }
 
 
