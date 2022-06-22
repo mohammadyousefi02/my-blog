@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import MainLayout from '../../src/layout/MainLayout'
 import Link from "next/link"
 import { server } from '../../config'
 import Head from 'next/head'
-
+import {useRouter } from "next/router"
 
 export default function Post({post}) {
   return (

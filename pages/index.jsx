@@ -22,7 +22,7 @@ export default function Home({posts}) {
             </div>
             <div className='flex flex-col gap-8'>
               {posts?.map(post => (
-                <Link key={post._id} href={`/posts/${post._id}`}>
+                <Link key={post._id} href={{pathname:'/posts/[name]',query:{id:post._id}}} as={`posts/${post.title.split(" ").join("-")}`}>
                   <div className='cursor-pointer flex flex-col gap-1'>
                     <h1 className='text-[28px] font-black'>{post.title}</h1>
                     <time className='text-[#9a9a9a]'>{post.date}</time>
